@@ -11,20 +11,22 @@ module.exports = {
   rebuildConfig: {},
   makers: [
     {
-      name: '@electron-forge/maker-squirrel',
-      config: {},
-    },
-    {
       name: '@electron-forge/maker-zip',
       platforms: ['darwin'],
     },
-    {
-      name: '@electron-forge/maker-deb',
-      config: {},
-    },
-    {
-      name: '@electron-forge/maker-rpm',
-      config: {},
-    },
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      platforms: ['darwin'],
+      config: {
+        repository: {
+          owner: 'dotgrid',
+          name: 'monotime',
+        },
+        authToken: process.env.GITHUB_MONOTIME_PAT,
+        prerelease: true
+      }
+    }
+  ]
 };
